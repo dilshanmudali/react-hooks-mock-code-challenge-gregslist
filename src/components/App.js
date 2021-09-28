@@ -8,6 +8,7 @@ function App() {
 
   const [listings, setListings] = useState([])
   const [searchList, setSearchList] = useState('')
+  const [sortList, setSortList] = useState('ALL')
 
   useEffect(() => {
     fetch(MAIN_API)
@@ -21,14 +22,28 @@ function App() {
     setListings(removed)
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setListings(listings.filter(list => list.description === searchList))
+  }
+
+
 
   return (
     <div className="app">
-      <Header setSearchList = {setSearchList} searchList={searchList}/>
+      <Header 
+        setSearchList = {setSearchList} 
+        searchList={searchList} 
+        handleSubmit={handleSubmit}
+        sortList = {sortList}
+        setSortList = {setSortList}
+        />
+
       <ListingsContainer 
         listings={listings} 
         handleDelete={handleDelete}
         searchList={searchList}
+        sortList = {sortList}
         />
     </div>
   );

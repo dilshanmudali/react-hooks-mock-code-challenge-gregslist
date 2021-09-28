@@ -1,9 +1,9 @@
 import React from "react";
 
-function Search({setSearchList, searchList}) {
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(searchList);
+function Search({setSearchList, searchList, handleSubmit, sortList, setSortList}) {
+ 
+  const handleSort = (e) => {
+    setSortList(e.target.value)
   }
 
   return (
@@ -16,6 +16,10 @@ function Search({setSearchList, searchList}) {
         onChange={(e) => setSearchList(e.target.value)}
       />
       <button type="submit">🔍</button>
+      <select onChange={handleSort}>
+        <option value='ALL' checked={sortList === 'ALL'}>All</option>
+        <option value='ABC' checked={sortList === 'ABC'}>Location</option>
+      </select>
     </form>
   );
 }

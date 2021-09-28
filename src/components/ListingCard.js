@@ -3,6 +3,7 @@ import {useState} from "react";
 function ListingCard({listing, handleDelete}) {
 
   const [favorite, setFavorite] = useState(false)
+ 
 
   const {description, image='https://via.placeholder.com/300x300', location} = listing
 
